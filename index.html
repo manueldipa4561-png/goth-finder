@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hexed | Swipe in the dark</title>
+<meta name="description" content="The dating app for goth girls and the people who adore them. Join the waitlist for early access. 18+ only.">
+<meta name="theme-color" content="#0a0709">
+<meta property="og:title" content="Hexed | Swipe in the dark">
+<meta property="og:description" content="The dating app for goth girls and the people who adore them. Join the waitlist.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0709'/%3E%3Cpath d='M20 6a10 10 0 1 0 0 20 8 8 0 1 1 0-20z' fill='%23efe6da'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0709;
+  --surface: #150e13;
+  --surface-2: #1d141b;
+  --text: #efe6da;
+  --muted: #b3a5ae;
+  --blood: #b3122f;
+  --blood-hi: #e8607a;
+  --violet: #6b4fa3;
+  --line: #3a2a35;
+  --display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --body: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --gutter: 20px;
+}
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background:
+    radial-gradient(60rem 40rem at 85% -10%, rgba(107,79,163,.28), transparent 60%),
+    radial-gradient(50rem 36rem at -10% 20%, rgba(179,18,47,.2), transparent 60%),
+    var(--bg);
+  color: var(--text);
+  font: 400 1rem/1.6 var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { width: min(1100px, 100% - var(--gutter) * 2); margin-inline: auto; }
+section { padding-block: clamp(56px, 9vw, 112px); }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.05; letter-spacing: .005em; }
+h1 { font-size: clamp(3rem, 9vw, 5.75rem); margin-bottom: 24px; }
+h1 em, h2 em { font-style: italic; color: var(--blood-hi); font-weight: 500; }
+h2 { font-size: clamp(2rem, 5vw, 3.25rem); margin-bottom: 20px; }
+h3 { font-size: 1.5rem; margin-bottom: 8px; }
+p.lead { font-size: clamp(1.05rem, 2.2vw, 1.25rem); color: var(--muted); max-width: 34rem; }
+.eyebrow { display: inline-block; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; color: var(--blood-hi); margin-bottom: 18px; }
+a { color: var(--blood-hi); }
+:focus-visible { outline: 3px solid var(--blood-hi); outline-offset: 3px; border-radius: 6px; }
+
+/* nav */
+header { padding-block: 20px; }
+header .wrap { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--display); font-size: 1.9rem; font-weight: 600; letter-spacing: .04em; text-decoration: none; color: var(--text); }
+.logo span { color: var(--blood-hi); }
+.age { font-size: .8rem; letter-spacing: .12em; border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; color: var(--muted); }
+
+/* hero */
+.hero { padding-top: clamp(24px, 5vw, 56px); }
+.hero .wrap { display: grid; gap: 56px; align-items: center; }
+@media (min-width: 880px) { .hero .wrap { grid-template-columns: 1.15fr .85fr; } }
+
+/* form */
+form { margin-top: 32px; max-width: 30rem; display: grid; gap: 14px; }
+label { font-size: .85rem; color: var(--muted); display: block; margin-bottom: 6px; }
+input[type=email], input[type=text], select {
+  width: 100%; min-height: 48px; padding: 0 14px; font: inherit; color: var(--text);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+}
+input::placeholder { color: #8a7b85; }
+.check { display: flex; gap: 12px; align-items: flex-start; font-size: .9rem; color: var(--muted); cursor: pointer; }
+.check input { width: 22px; height: 22px; margin-top: 2px; accent-color: var(--blood); flex: none; }
+.btn {
+  min-height: 52px; padding: 0 28px; font: 600 1rem var(--body); color: #fff; cursor: pointer;
+  background: var(--blood); border: 0; border-radius: 12px;
+  box-shadow: 0 0 0 1px rgba(232,96,122,.4), 0 10px 40px -10px rgba(179,18,47,.8);
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  display: inline-flex; align-items: center; justify-content: center; text-decoration: none;
+}
+.btn:hover { background: #c4163a; transform: translateY(-2px); }
+.btn:disabled { opacity: .6; cursor: progress; transform: none; }
+.fine { font-size: .8rem; color: var(--muted); }
+#status { min-height: 1.5em; font-size: .95rem; }
+#status.ok { color: #7fd6a4; }
+#status.err { color: #ff8a9b; }
+.hp { position: absolute; left: -9999px; }
+
+/* tarot swipe stack */
+.stack { position: relative; width: min(270px, 66vw); aspect-ratio: 2 / 3; margin-inline: auto; }
+.card {
+  position: absolute; inset: 0; border-radius: 18px; padding: 14px;
+  background: linear-gradient(160deg, var(--surface-2), var(--surface));
+  border: 1px solid var(--line); box-shadow: 0 30px 60px -20px rgba(0,0,0,.9);
+}
+.card .frame {
+  height: 100%; border: 1px solid rgba(232,96,122,.45); border-radius: 10px;
+  display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+  padding: 16px 10px; text-align: center; position: relative; overflow: hidden;
+  background: radial-gradient(circle at 50% 38%, rgba(107,79,163,.35), transparent 62%);
+}
+.card svg { width: 62%; aspect-ratio: 1; color: var(--text); }
+.card .num, .card .name { font-family: var(--display); letter-spacing: .25em; text-transform: uppercase; font-size: .85rem; color: var(--blood-hi); }
+.card .name { color: var(--text); font-size: 1.35rem; letter-spacing: .12em; }
+.c3 { transform: rotate(-9deg) translateX(-18px); opacity: .55; }
+.c2 { transform: rotate(7deg) translateX(16px); opacity: .8; }
+.c1 { animation: swipe 7s ease-in-out infinite; }
+.stamp {
+  position: absolute; top: 18px; left: 14px; z-index: 2; opacity: 0; transform: rotate(-14deg);
+  font: 700 1.6rem var(--display); letter-spacing: .15em; color: #7fd6a4;
+  border: 3px solid #7fd6a4; border-radius: 8px; padding: 2px 10px;
+  animation: stamp 7s ease-in-out infinite;
+}
+@keyframes swipe {
+  0%, 30% { transform: translateY(0) rotate(0); opacity: 1; }
+  45% { transform: translateX(26px) rotate(6deg); opacity: 1; }
+  68% { transform: translateX(150%) rotate(24deg); opacity: 0; }
+  69%, 84% { transform: translateY(24px) scale(.94); opacity: 0; }
+  100% { transform: translateY(0) rotate(0); opacity: 1; }
+}
+@keyframes stamp {
+  0%, 38% { opacity: 0; }
+  46%, 62% { opacity: 1; }
+  68%, 100% { opacity: 0; }
+}
+
+/* sections */
+.pains { list-style: none; padding: 0; display: grid; gap: 14px; margin-top: 28px; max-width: 38rem; }
+.pains li { padding: 18px 20px; background: var(--surface); border-left: 3px solid var(--blood); border-radius: 0 12px 12px 0; font-size: 1.1rem; }
+.steps { display: grid; gap: 20px; margin-top: 36px; }
+@media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+.step, .trust > div { padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
+.step .n { font-family: var(--display); font-size: 2.6rem; color: var(--blood-hi); line-height: 1; margin-bottom: 10px; display: block; }
+.step p, .trust p { color: var(--muted); }
+.trust { display: grid; gap: 20px; margin-top: 36px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+body::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 10; opacity: .07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.band { background: linear-gradient(180deg, transparent, rgba(179,18,47,.08), transparent); }
+details { border-bottom: 1px solid var(--line); padding-block: 18px; max-width: 42rem; }
+summary { cursor: pointer; font-weight: 500; min-height: 44px; display: flex; align-items: center; }
+details p { color: var(--muted); margin-top: 8px; }
+.final { text-align: center; }
+.final p.lead { margin: 0 auto 28px; }
+footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--muted); font-size: .85rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .c1, .stamp { animation: none; }
+  .btn { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="moon" viewBox="0 0 100 100"><path fill="currentColor" d="M70 18A40 40 0 1 0 70 82A34 34 0 0 1 70 18z"/><path fill="currentColor" d="M80 22l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></symbol>
+  <symbol id="eye" viewBox="0 0 100 100"><path fill="none" stroke="currentColor" stroke-width="3" d="M6 50C22 24 78 24 94 50 78 76 22 76 6 50z"/><circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="50" r="5" fill="currentColor"/></symbol>
+  <symbol id="star" viewBox="0 0 100 100"><path fill="currentColor" d="M50 6l6 38 38 6-38 6-6 38-6-38-38-6 38-6z"/></symbol>
+</svg>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Hexed home">Hex<span>ed</span></a>
+    <span class="age">18+ ONLY</span>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" id="join">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Coming soon</span>
+        <h1>Swipe in <em>the dark.</em></h1>
+        <p class="lead">The dating app for goth girls and the people who adore them. No beige small talk. No explaining the eyeliner. Just your kind of people.</p>
+
+        <form name="waitlist" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" id="waitlist">
+          <input type="hidden" name="form-name" value="waitlist">
+          <input type="hidden" name="src" id="src">
+          <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@midnight.com">
+          </div>
+          <div>
+            <label for="city">Your city (optional)</label>
+            <input id="city" name="city" type="text" autocomplete="address-level2" placeholder="Milan, Leeds, Berlin...">
+          </div>
+          <div>
+            <label for="role">I'm here as (optional)</label>
+            <select id="role" name="role">
+              <option value="">Pick one</option>
+              <option>Goth girl</option>
+              <option>Here to meet goth girls</option>
+              <option>Just curious</option>
+            </select>
+          </div>
+          <label class="check" for="age"><input id="age" name="age18" type="checkbox" value="yes" required><span>I'm 18 or older.</span></label>
+          <button class="btn" type="submit" id="submit">Get early access</button>
+          <p id="status" role="status" aria-live="polite"></p>
+          <p class="fine">Founding members get a badge if Hexed launches. We only email you about launch. Leave any time.</p>
+        </form>
+      </div>
+
+      <div class="stack" aria-hidden="true">
+        <div class="card c3"><div class="frame"><span class="num">XIX</span><svg><use href="#star"/></svg><span class="name">The Star</span></div></div>
+        <div class="card c2"><div class="frame"><span class="num">XVIII</span><svg><use href="#eye"/></svg><span class="name">The Eye</span></div></div>
+        <div class="card c1"><span class="stamp">HEX</span><div class="frame"><span class="num">XIII</span><svg><use href="#moon"/></svg><span class="name">The Moth</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Other apps make you the <em>"alternative"</em> one.</h2>
+      <ul class="pains">
+        <li>Your bio gets read as a quirk, not a personality.</li>
+        <li>Your matches ask if it's "just a phase."</li>
+        <li>The old goth sites look like 2007 forums. The newer apps ask you to pay before you see anyone.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <span class="eyebrow">How it works</span>
+      <h2>Built for the <em>dark.</em></h2>
+      <div class="steps">
+        <div class="step"><span class="n">I</span><h3>Make your profile</h3><p>Pick your look: trad, romantic, cyber, pastel, punk. Add photos and the song you'd play at midnight.</p></div>
+        <div class="step"><span class="n">II</span><h3>Swipe</h3><p>Right to hex, left to let go. When you both hex, it's a match.</p></div>
+        <div class="step"><span class="n">III</span><h3>Talk</h3><p>Nobody can message you unless you swiped right first. You decide who gets in.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">Safe by design</span>
+      <h2>Dark look. <em>Clean</em> intentions.</h2>
+      <div class="trust">
+        <div><h3>Free to look</h3><p>See who's in your city before you pay anything. No paywall at the door.</p></div>
+        <div><h3>18+ only</h3><p>Age confirmed at sign-up. No minors, no exceptions.</p></div>
+        <div><h3>Real people</h3><p>Photo verification, plus one-tap block and report on every profile.</p></div>
+        <div><h3>Open source</h3><p>The code is public at launch, so you can see exactly what happens to your data. Export or delete it any time.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <h2>Questions</h2>
+      <details><summary>When does it launch?</summary><p>No date yet. Everyone on the waitlist gets in first, and we'll email you the day it opens.</p></details>
+      <details><summary>Is it only for girls?</summary><p>It's built for goth girls and the people who want to meet them. Anyone 18+ who respects the vibe is welcome.</p></details>
+      <details><summary>What does it cost?</summary><p>Joining the waitlist is free. We'll share pricing before launch, so nothing surprises you.</p></details>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <h2>Your people are <em>awake.</em></h2>
+      <p class="lead">Be one of the first inside.</p>
+      <a class="btn" href="#join">Get early access</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Hexed · 18+ only · We store your email only to tell you about launch.</div>
+</footer>
+
+<script>
+const form = document.getElementById("waitlist");
+const button = document.getElementById("submit");
+const status = document.getElementById("status");
+// Channel tag from the link (?src=reddit, ?src=preview) so signups can be counted per channel.
+document.getElementById("src").value = new URLSearchParams(location.search).get("src") || "";
+
+function setStatus(message, kind) {
+  status.textContent = message;
+  status.className = kind;
+}
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  button.disabled = true;
+  setStatus("Summoning your spot...", "");
+  try {
+    const response = await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(new FormData(form)).toString(),
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    form.reset();
+    setStatus("You're in. Check your inbox at launch.", "ok");
+  } catch (error) {
+    console.error("Waitlist signup failed:", error);
+    setStatus("Something went wrong. Please try again in a minute.", "err");
+  } finally {
+    button.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
