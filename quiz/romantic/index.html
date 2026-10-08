@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I&#x27;m The Hopeless Romantic Bat. Which goth gf are you? | Hexed</title>
+<meta name="description" content="You fall for the cemetery and the person in it. Take the quiz.">
+<meta name="theme-color" content="#0a0709">
+<meta property="og:title" content="I&#x27;m The Hopeless Romantic Bat. Which goth gf are you?">
+<meta property="og:description" content="You fall for the cemetery and the person in it. Take the quiz.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gothfinder.netlify.app/quiz/romantic/">
+<meta property="og:image" content="https://gothfinder.netlify.app/og/romantic.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gothfinder.netlify.app/og/romantic.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0709'/%3E%3Cpath d='M20 6a10 10 0 1 0 0 20 8 8 0 1 1 0-20z' fill='%23efe6da'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Inter:wght@400;500;600&family=Anton&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../quiz.css">
+</head>
+<body>
+<div class="wrap">
+  <header><a class="logo" href="../../" aria-label="Hexed home">Hex<span>ed</span></a><span class="tag">18+ ONLY</span></header>
+  <main data-id="romantic" data-title="The Hopeless Romantic Bat" data-img="kiss">
+    <figure class="card" style="margin:8px 0 18px">
+      <img src="../../img/q/kiss.jpg" alt="An AI-generated photo of a fictional goth woman, for the result The Hopeless Romantic Bat. Not a real member.">
+      <span class="cap top">I'm The Hopeless Romantic Bat</span>
+      <span class="cap bottom">Which goth gf are you?</span>
+    </figure>
+    <h1>You're <em>The Hopeless Romantic Bat.</em></h1>
+    <p class="lead">You fall for the cemetery and the person in it.</p>
+    <div class="row">
+      <button class="btn" type="button" id="share">Share my result</button>
+      <button class="btn ghost" type="button" id="download">Download the image</button>
+      <a class="btn ghost" href="../">Take the quiz again</a>
+    </div>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+    <form class="join" id="join" name="quiz-waitlist" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
+      <h2>Hexed is coming. Be first inside.</h2>
+      <input type="hidden" name="form-name" value="quiz-waitlist">
+      <input type="hidden" name="src" value="quiz-romantic">
+      <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <div><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="you@midnight.com"></div>
+      <label class="check" for="age"><input id="age" name="age18" type="checkbox" value="yes" required><span>I'm 18 or older.</span></label>
+      <button class="btn" type="submit">Get early access</button>
+      <p id="join-status" class="status" role="status" aria-live="polite"></p>
+      <p class="fine">We only email you about launch. Leave any time. Photos on this site are AI-generated and show fictional people, not members.</p>
+    </form>
+  </main>
+</div>
+<script type="module" src="../share.js"></script>
+</body>
+</html>

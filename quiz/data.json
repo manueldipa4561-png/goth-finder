@@ -1,0 +1,38 @@
+{
+  "site": "https://gothfinder.netlify.app",
+  "archetypes": [
+    { "id": "mommy", "title": "The Goth Mommy", "tagline": "You say \"be normal about it\" and people become normal.", "img": "swipe" },
+    { "id": "critic", "title": "The Deadpan Critic", "tagline": "Your eyebrow has a PhD.", "img": "sideeye" },
+    { "id": "tarot", "title": "The Tarot Menace", "tagline": "You pulled a card about the \"hey\" and unmatched.", "img": "cards" },
+    { "id": "soft", "title": "The Soft Menace", "tagline": "Terrifying until you smile. Then everyone sits down.", "img": "pat" },
+    { "id": "romantic", "title": "The Hopeless Romantic Bat", "tagline": "You fall for the cemetery and the person in it.", "img": "kiss" },
+    { "id": "moth", "title": "The Whimsigoth Moth", "tagline": "Drawn to candles, books and one (1) person.", "img": "friend" }
+  ],
+  "questions": [
+    { "q": "A stranger texts \"hey\". You:", "a": [
+      ["Leave it on read. Dramatically.", "critic"],
+      ["\"State your business.\"", "mommy"],
+      ["Pull a tarot card about it.", "tarot"],
+      ["Reply with a bat emoji.", "moth"] ] },
+    { "q": "Perfect first date?", "a": [
+      ["A cemetery walk, then pasta.", "romantic"],
+      ["A bookshop that smells like rain.", "moth"],
+      ["A horror double feature, with commentary.", "critic"],
+      ["I choose the place. You pay attention.", "mommy"] ] },
+    { "q": "Wednesday or Nosferatu?", "a": [
+      ["Wednesday. Obviously.", "soft"],
+      ["Nosferatu. I wore velvet. Twice.", "romantic"],
+      ["Both. Then I rank them.", "tarot"],
+      ["Neither. I'm rewatching Buffy.", "moth"] ] },
+    { "q": "Your love language is...", "a": [
+      ["Acts of service. Bring coffee.", "mommy"],
+      ["Quality time, in a graveyard.", "romantic"],
+      ["Gifts. A small skull will do.", "soft"],
+      ["Words. A handwritten letter.", "tarot"] ] },
+    { "q": "The red flag you'll tolerate?", "a": [
+      ["Dramatic playlists.", "soft"],
+      ["Being late, if they bring flowers.", "moth"],
+      ["Too many tarot opinions.", "tarot"],
+      ["None. I'll explain calmly.", "critic"] ] }
+  ]
+}
