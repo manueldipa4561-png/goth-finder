@@ -27,6 +27,17 @@ let view = { tab: "discover", chat: null };
 let draftMessage = "";
 let swiping = false;
 let toastTimer = null;
+let installPrompt = null;
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  installPrompt = event;
+  if (view.tab === "me" && !view.chat) render();
+});
+window.addEventListener("appinstalled", () => { installPrompt = null; toast("Installed. Find Hexed on your home screen."); });
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js").catch((error) => console.error("Offline mode unavailable:", error));
+}
 
 // ---------- state ----------
 
@@ -436,6 +447,13 @@ function meScreen() {
       h("button", { class: "btn ghost", type: "button", onclick: closeSheet }, "Cancel")));
   return h("section", { class: "stack-y" }, h("h1", {}, "Me"), profileCard(state.me, "static"),
     h("button", { class: "btn", type: "button", onclick: () => go("edit") }, "Edit profile"),
+    installPrompt && h("button", { class: "btn ghost", type: "button", onclick: async () => {
+      installPrompt.prompt();
+      await installPrompt.userChoice;
+      installPrompt = null;
+      render();
+    } }, "Install Hexed"),
+    h("p", { class: "fine" }, "Hexed is a free web app. To install it: on iPhone tap Share, then Add to Home Screen. On Android open the browser menu and tap Install app. No app store."),
     h("button", { class: "btn ghost", type: "button", onclick: resetDemo }, "Reset demo swipes"),
     h("button", { class: "btn ghost", type: "button", onclick: confirmDelete }, "Delete all my data"),
     h("p", { class: "fine" }, "Demo mode: your profile, swipes and messages are saved only in this browser. Nothing is sent anywhere. Verification and real members come later."));
