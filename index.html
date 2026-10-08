@@ -70,7 +70,15 @@ input[type=email], input[type=text], select {
   width: 100%; min-height: 48px; padding: 0 14px; font: inherit; color: var(--text);
   background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
 }
-input::placeholder { color: #8a7b85; }
+input::placeholder { color: #a39399; }
+.more { border: 1px solid var(--line); border-radius: 12px; padding: 0 14px; }
+.more summary { cursor: pointer; min-height: 48px; display: flex; align-items: center; color: var(--muted); font-size: .9rem; }
+.more[open] { padding-bottom: 14px; display: grid; gap: 14px; }
+.more[open] summary { margin-bottom: -4px; }
+.btn[hidden] { display: none; }
+.btn.ghost { background: transparent; box-shadow: none; border: 1px solid var(--blood-hi); color: var(--blood-hi); }
+.btn.ghost:hover { background: rgba(232,96,122,.12); }
+footer p + p { margin-top: 6px; max-width: 46rem; }
 .check { display: flex; gap: 12px; align-items: flex-start; font-size: .9rem; color: var(--muted); cursor: pointer; }
 .check input { width: 22px; height: 22px; margin-top: 2px; accent-color: var(--blood); flex: none; }
 .btn {
@@ -185,22 +193,26 @@ footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--mu
             <label for="email">Email</label>
             <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@midnight.com">
           </div>
-          <div>
-            <label for="city">Your city (optional)</label>
-            <input id="city" name="city" type="text" autocomplete="address-level2" placeholder="Milan, Leeds, Berlin...">
-          </div>
-          <div>
-            <label for="role">I'm here as (optional)</label>
-            <select id="role" name="role">
-              <option value="">Pick one</option>
-              <option>Goth girl</option>
-              <option>Here to meet goth girls</option>
-              <option>Just curious</option>
-            </select>
-          </div>
+          <details class="more">
+            <summary>Tell us more (optional)</summary>
+            <div>
+              <label for="city">Your city</label>
+              <input id="city" name="city" type="text" autocomplete="address-level2" placeholder="Milan, Leeds, Berlin...">
+            </div>
+            <div>
+              <label for="role">I'm here as</label>
+              <select id="role" name="role">
+                <option value="">Pick one</option>
+                <option>Goth girl</option>
+                <option>Here to meet goth girls</option>
+                <option>Just curious</option>
+              </select>
+            </div>
+          </details>
           <label class="check" for="age"><input id="age" name="age18" type="checkbox" value="yes" required><span>I'm 18 or older.</span></label>
           <button class="btn" type="submit" id="submit">Get early access</button>
           <p id="status" role="status" aria-live="polite"></p>
+          <button class="btn ghost" type="button" id="share" hidden>Tell a friend</button>
           <p class="fine">Founding members get a badge if Hexed launches. We only email you about launch. Leave any time.</p>
         </form>
       </div>
@@ -244,7 +256,7 @@ footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--mu
         <div><h3>Free to look</h3><p>See who's in your city before you pay anything. No paywall at the door.</p></div>
         <div><h3>18+ only</h3><p>Age confirmed at sign-up. No minors, no exceptions.</p></div>
         <div><h3>Real people</h3><p>Photo verification, plus one-tap block and report on every profile.</p></div>
-        <div><h3>Open source</h3><p>The code is public at launch, so you can see exactly what happens to your data. Export or delete it any time.</p></div>
+        <div><h3>Open source</h3><p>The code is public on <a href="https://github.com/manueldipa4561-png/goth-finder" rel="noopener">GitHub</a>, so you can see exactly what happens to your data. Export or delete it any time.</p></div>
       </div>
     </div>
   </section>
@@ -268,7 +280,10 @@ footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--mu
 </main>
 
 <footer>
-  <div class="wrap">© 2026 Hexed · 18+ only · We store your email only to tell you about launch.</div>
+  <div class="wrap">
+    <p>© 2026 Hexed · 18+ only</p>
+    <p>Privacy: we store your email, plus your city and role if you add them, only to tell you about launch. Ask us to delete it any time by replying to any email from us.</p>
+  </div>
 </footer>
 
 <script>
@@ -277,6 +292,21 @@ const button = document.getElementById("submit");
 const status = document.getElementById("status");
 // Channel tag from the link (?src=reddit, ?src=preview) so signups can be counted per channel.
 document.getElementById("src").value = new URLSearchParams(location.search).get("src") || "";
+
+const shareButton = document.getElementById("share");
+shareButton.addEventListener("click", async () => {
+  const url = `${location.origin}/?src=friend`;
+  const payload = { title: "Hexed", text: "A dating app for goth girls and the people who adore them. Join the waitlist.", url };
+  try {
+    if (navigator.share) await navigator.share(payload);
+    else {
+      await navigator.clipboard.writeText(url);
+      shareButton.textContent = "Link copied";
+    }
+  } catch (error) {
+    if (error.name !== "AbortError") setStatus("Couldn't share. Copy the page address instead.", "err");
+  }
+});
 
 function setStatus(message, kind) {
   status.textContent = message;
@@ -296,6 +326,7 @@ form.addEventListener("submit", async (event) => {
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     form.reset();
     setStatus("You're in. Check your inbox at launch.", "ok");
+    shareButton.hidden = false;
   } catch (error) {
     console.error("Waitlist signup failed:", error);
     setStatus("Something went wrong. Please try again in a minute.", "err");
