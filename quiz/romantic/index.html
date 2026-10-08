@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>I&#x27;m The Hopeless Romantic Bat. Which goth gf are you? | Hexed</title>
-<meta name="description" content="You fall for the cemetery and the person in it. Take the quiz.">
+<title>It&#x27;s a match: Vesper, 28. Find your goth match. | Hexed</title>
+<meta name="description" content="I fall for the cemetery and the person in it. Swipe 12 profiles to find your goth match.">
 <meta name="theme-color" content="#0a0709">
-<meta property="og:title" content="I&#x27;m The Hopeless Romantic Bat. Which goth gf are you?">
-<meta property="og:description" content="You fall for the cemetery and the person in it. Take the quiz.">
+<meta property="og:title" content="It&#x27;s a match: Vesper, 28. Find your goth match.">
+<meta property="og:description" content="I fall for the cemetery and the person in it. Swipe 12 profiles to find your goth match.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://gothfinder.netlify.app/quiz/romantic/">
 <meta property="og:image" content="https://gothfinder.netlify.app/og/romantic.jpg">
@@ -16,24 +16,38 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0709'/%3E%3Cpath d='M20 6a10 10 0 1 0 0 20 8 8 0 1 1 0-20z' fill='%23efe6da'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Inter:wght@400;500;600&family=Anton&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../quiz.css">
 </head>
 <body>
 <div class="wrap">
   <header><a class="logo" href="../../" aria-label="Hexed home">Hex<span>ed</span></a><span class="tag">18+ ONLY</span></header>
-  <main data-id="romantic" data-title="The Hopeless Romantic Bat" data-img="kiss">
-    <figure class="card" style="margin:8px 0 18px">
-      <img src="../../img/q/kiss.jpg" alt="An AI-generated photo of a fictional goth woman, for the result The Hopeless Romantic Bat. Not a real member.">
-      <span class="cap top">I'm The Hopeless Romantic Bat</span>
-      <span class="cap bottom">Which goth gf are you?</span>
-    </figure>
-    <h1>You're <em>The Hopeless Romantic Bat.</em></h1>
-    <p class="lead">You fall for the cemetery and the person in it.</p>
+  <main data-id="romantic" data-name="Vesper" data-age="28" data-img="kiss" data-tags="Romantic goth|Cemetery walks|Velvet" data-bio="I fall for the cemetery and the person in it.">
+    <section class="match">
+      <h1 class="match-title">It's a match!</h1>
+      <div class="pair">
+        <div class="avatar you" id="you" aria-hidden="true">You</div>
+        <div class="heart" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 21s-7.5-4.6-9.5-9.2C1 8.2 3.2 5 6.3 5c1.9 0 3.5 1 4.5 2.6C11.8 6 13.4 5 15.3 5c3.1 0 5.3 3.2 3.8 6.8C19.5 16.4 12 21 12 21z"/></svg></div>
+        <div class="avatar her"><img src="../../img/kiss.jpg" alt="An AI-generated doll-style illustration of Vesper, a fictional goth character. Not a real member."></div>
+      </div>
+      <p class="lead own" id="line-own">You and Vesper hexed each other.</p>
+      <p class="lead visitor" id="line-visitor"><b id="sharer">Someone</b> matched with Vesper. Who's your goth match?</p>
+      <span class="chem" id="chem" hidden></span>
+    </section>
+    <article class="profile">
+      <img src="../../img/kiss.jpg" alt="" loading="lazy">
+      <div class="body">
+        <h2>Vesper <small>28</small></h2>
+        <span class="fine">4 km away &middot; The Hopeless Romantic Bat</span>
+        <ul class="chips"><li>Romantic goth</li><li>Cemetery walks</li><li>Velvet</li></ul>
+        <p>I fall for the cemetery and the person in it.</p>
+      </div>
+    </article>
     <div class="row">
-      <button class="btn" type="button" id="share">Share my result</button>
-      <button class="btn ghost" type="button" id="download">Download the image</button>
-      <a class="btn ghost" href="../">Take the quiz again</a>
+      <button class="btn own" type="button" id="share">Share my match</button>
+      <button class="btn ghost own" type="button" id="download">Download the story image</button>
+      <a class="btn visitor" href="../">Find your goth match</a>
+      <a class="btn ghost own" href="../">Swipe again</a>
     </div>
     <p id="status" class="status" role="status" aria-live="polite"></p>
     <form class="join" id="join" name="quiz-waitlist" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
@@ -45,7 +59,7 @@
       <label class="check" for="age"><input id="age" name="age18" type="checkbox" value="yes" required><span>I'm 18 or older.</span></label>
       <button class="btn" type="submit">Get early access</button>
       <p id="join-status" class="status" role="status" aria-live="polite"></p>
-      <p class="fine">We only email you about launch. Leave any time. Photos on this site are AI-generated and show fictional people, not members.</p>
+      <p class="fine">We only email you about launch. Leave any time. Characters on this site are AI-generated doll-style illustrations of fictional people, not members.</p>
     </form>
   </main>
 </div>
