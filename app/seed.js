@@ -8,6 +8,8 @@ export const PROMPTS = [
   "Green flag: someone who",
   "I will absolutely judge you for",
   "A perfect first date is",
+  "Things I will not explain again",
+  "Hot take that ends this match:",
 ];
 
 const girl = (id, name, age, city, subgenres, obsession, promptQ, promptA, sigil, hexBack) => ({
@@ -24,9 +26,9 @@ export const PROFILES = [
   girl("g4", "Calla", 22, "Portland", ["Whimsigoth", "Pastel goth"], "Pressed flowers and candle wax", PROMPTS[2], "I cry at nature documentaries.", 3, true),
   girl("g5", "Isolde", 31, "Los Angeles", ["Trad goth", "Romantic goth"], "Cemetery walks at golden hour", PROMPTS[5], "Wandering a cemetery, then pasta. Not negotiable.", 4, false),
   girl("g6", "Nyx", 27, "Austin", ["Deathrock", "Mall goth"], "Thrifted band tees", PROMPTS[4], "People who say goth is just a phase.", 5, true),
-  girl("g7", "Ravenna", 25, "Chicago", ["Nosferatu-core", "Dark academia"], "Frankenstein, the 2025 one, and the book", PROMPTS[0], "Both, in a double feature.", 6, false),
+  girl("g7", "Ravenna", 25, "Chicago", ["Nosferatu-core", "Dark academia"], "Frankenstein, the 2025 one, and the book", PROMPTS[7], "The 2025 Frankenstein was better than the book. Say it to my face.", 6, false),
   girl("g8", "Ophelia", 23, "Seattle", ["Whimsigoth"], "Moon phases and herbal tea", PROMPTS[2], "I name my plants after poets.", 7, true),
-  girl("g9", "Lilith", 33, "Milan", ["Trad goth"], "Bauhaus, always Bauhaus", PROMPTS[1], "Bela Lugosi's Dead, obviously.", 8, false),
+  girl("g9", "Lilith", 33, "Milan", ["Trad goth"], "Bauhaus, always Bauhaus", PROMPTS[6], "That it isn't a phase.", 8, false),
   girl("g10", "Circe", 28, "Turin", ["Romantic goth", "Whimsigoth"], "Velvet, lace and sea glass", PROMPTS[5], "A used bookshop that smells like rain.", 9, true),
 ];
 
@@ -44,4 +46,5 @@ export const DEMO_REPLIES = [
   "Okay but what are you doing on Saturday?",
   "I was hoping you'd swipe right.",
   "Tell me something nobody knows about you.",
+  "Wednesday or Nosferatu. Wrong answers only.",
 ];

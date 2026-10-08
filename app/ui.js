@@ -147,7 +147,7 @@ function tabButtons() {
 function gateScreen() {
   return h("form", { class: "stack-y", onsubmit: (e) => { e.preventDefault(); commit(acceptGate(state)); } },
     h("h1", {}, "Before you swipe"),
-    h("p", { class: "lead" }, "Hexed is for goth girls and the people who want to meet them."),
+    h("p", { class: "lead" }, "Hexed is for goth girls and the people who want to meet them. Please be normal about it."),
     h("label", { class: "check" }, h("input", { type: "checkbox", name: "adult", required: true }), h("span", {}, "I'm 18 or older.")),
     h("label", { class: "check" }, h("input", { type: "checkbox", name: "rules", required: true }),
       h("span", {}, "I'll be respectful: no harassment, no mocking how anyone looks, no sharing profiles outside Hexed.")),
@@ -310,8 +310,8 @@ function swipe(profile, choice, options = {}) {
 function discoverScreen() {
   const [top, next] = buildDeck(state, ALL_PROFILES);
   if (!top) {
-    return h("section", { class: "empty" }, h("h1", {}, "That's everyone"),
-      h("p", { class: "lead" }, "You've seen every demo profile. Reset the demo in Me to swipe again."),
+    return h("section", { class: "empty" }, h("h1", {}, "You've seen the whole scene"),
+      h("p", { class: "lead" }, "That was every demo profile. Go outside, or reset the demo in Me."),
       h("button", { class: "btn", type: "button", onclick: () => go("me") }, "Open Me"));
   }
   const card = profileCard(top, "top");
@@ -327,7 +327,7 @@ function discoverScreen() {
 }
 
 function showMatch(profile) {
-  openSheet(h("h2", {}, "It's a match"), h("p", {}, `${profile.name} hexed you back.`),
+  openSheet(h("h2", {}, "Mutual hex"), h("p", {}, `${profile.name} hexed you back. It's a match. Be normal.`),
     h("p", { class: "fine" }, "Demo: she's fictional and her replies are scripted."),
     h("div", { class: "btn-row" },
       h("button", { class: "btn", type: "button", onclick: () => { closeSheet(); go("matches", profile.id); } }, "Say hi"),
@@ -339,7 +339,7 @@ function showMatch(profile) {
 function admirersScreen() {
   const queue = admirersFor(state, ALL_PROFILES);
   if (queue.length === 0) {
-    return h("section", { class: "empty" }, h("h1", {}, "No admirers waiting"),
+    return h("section", { class: "empty" }, h("h1", {}, "Quiet in the crypt"),
       h("p", { class: "lead" }, "People who hex you appear here. Nobody can message you until you hex them back."));
   }
   return h("section", {}, h("h1", {}, "Admirers"),
@@ -356,7 +356,7 @@ function admirersScreen() {
 function matchesScreen() {
   const rows = state.matches.map((m) => byId(m.id)).filter(Boolean);
   if (rows.length === 0) {
-    return h("section", { class: "empty" }, h("h1", {}, "No matches yet"), h("p", { class: "lead" }, "Hex someone and hope she hexes back."));
+    return h("section", { class: "empty" }, h("h1", {}, "No matches yet"), h("p", { class: "lead" }, "Hex someone and hope she hexes back. Hope is allowed."));
   }
   return h("section", {}, h("h1", {}, "Matches"), h("ul", { class: "list" }, rows.map((p) => {
     const last = (state.messages[p.id] ?? []).at(-1);

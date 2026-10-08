@@ -181,9 +181,9 @@ footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--mu
   <section class="hero" id="join">
     <div class="wrap">
       <div>
-        <span class="eyebrow">Coming soon</span>
+        <span class="eyebrow">Coming soon. Not a phase.</span>
         <h1>Swipe in <em>the dark.</em></h1>
-        <p class="lead">The dating app for goth girls and the people who adore them. No beige small talk. No explaining the eyeliner. Just your kind of people.</p>
+        <p class="lead">The dating app for goth girls, and for everyone who's been posting "I need a goth gf" since 2014. Please be normal about it.</p>
 
         <form name="waitlist" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" id="waitlist">
           <input type="hidden" name="form-name" value="waitlist">
@@ -212,7 +212,7 @@ footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--mu
           <label class="check" for="age"><input id="age" name="age18" type="checkbox" value="yes" required><span>I'm 18 or older.</span></label>
           <button class="btn" type="submit" id="submit">Get early access</button>
           <p id="status" role="status" aria-live="polite"></p>
-          <button class="btn ghost" type="button" id="share" hidden>Tell a friend</button>
+          <button class="btn ghost" type="button" id="share" hidden>Summon a friend</button>
           <p class="fine">Founding members get a badge if Hexed launches. We only email you about launch. Leave any time.</p>
           <a class="btn ghost" href="app/">Try the swipe demo</a>
         </form>
@@ -230,8 +230,8 @@ footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--mu
     <div class="wrap">
       <h2>Other apps make you the <em>"alternative"</em> one.</h2>
       <ul class="pains">
-        <li>Your bio gets read as a quirk, not a personality.</li>
-        <li>Your matches ask if it's "just a phase."</li>
+        <li>Your bio says "goth" and they reply "like emo?"</li>
+        <li>Your match asks if it's "just a phase." It has been a decade.</li>
         <li>The old goth sites look like 2007 forums. The newer apps ask you to pay before you see anyone.</li>
       </ul>
     </div>
@@ -242,9 +242,9 @@ footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--mu
       <span class="eyebrow">How it works</span>
       <h2>Built for the <em>dark.</em></h2>
       <div class="steps">
-        <div class="step"><span class="n">I</span><h3>Make your profile</h3><p>Pick your look: trad, romantic, whimsigoth, pastel, cyber, deathrock. Add photos and the song you'd play at midnight.</p></div>
-        <div class="step"><span class="n">II</span><h3>Swipe</h3><p>Right to hex, left to let go. When you both hex, it's a match.</p></div>
-        <div class="step"><span class="n">III</span><h3>Talk</h3><p>Nobody can message you unless you swiped right first. You decide who gets in.</p></div>
+        <div class="step"><span class="n">I</span><h3>Make your profile</h3><p>Pick your look: trad, romantic, whimsigoth, pastel, cyber, deathrock. Add photos and the song you'd play at midnight. Wednesday or Nosferatu? Choose carefully.</p></div>
+        <div class="step"><span class="n">II</span><h3>Swipe</h3><p>Right to hex, left to let go. Both hex, it's a match. Both let go, it's Tuesday.</p></div>
+        <div class="step"><span class="n">III</span><h3>Talk</h3><p>Nobody messages you unless you hexed them first. The "hey" brigade stays outside.</p></div>
       </div>
     </div>
   </section>
@@ -256,7 +256,7 @@ footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--mu
       <div class="trust">
         <div><h3>Free to look</h3><p>See who's in your city before you pay anything. No paywall at the door.</p></div>
         <div><h3>18+ only</h3><p>Age confirmed at sign-up. No minors, no exceptions.</p></div>
-        <div><h3>Real people</h3><p>Photo verification, plus one-tap block and report on every profile.</p></div>
+        <div><h3>Real people</h3><p>One-tap block and report on every profile, already in the demo. Photo verification is planned.</p></div>
         <div><h3>Open source</h3><p>The code is public on <a href="https://github.com/manueldipa4561-png/goth-finder" rel="noopener">GitHub</a>, so you can see exactly what happens to your data. Export or delete it any time.</p></div>
       </div>
     </div>
@@ -265,6 +265,7 @@ footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--mu
   <section class="band">
     <div class="wrap">
       <h2>Questions</h2>
+      <details><summary>Is goth just a phase?</summary><p>No. Next question.</p></details>
       <details><summary>When does it launch?</summary><p>No date yet. Everyone on the waitlist gets in first, and we'll email you the day it opens.</p></details>
       <details><summary>Is it only for girls?</summary><p>It's built for goth girls and the people who want to meet them. Anyone 18+ who respects the vibe is welcome.</p></details>
       <details><summary>What does it cost?</summary><p>Joining the waitlist is free. We'll share pricing before launch, so nothing surprises you.</p></details>
@@ -326,7 +327,7 @@ form.addEventListener("submit", async (event) => {
     });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     form.reset();
-    setStatus("You're in. Check your inbox at launch.", "ok");
+    setStatus("You're in. We'll email you at launch, and only then.", "ok");
     shareButton.hidden = false;
   } catch (error) {
     console.error("Waitlist signup failed:", error);
