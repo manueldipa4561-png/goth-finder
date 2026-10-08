@@ -12,7 +12,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0709'/%3E%3Cpath d='M20 6a10 10 0 1 0 0 20 8 8 0 1 1 0-20z' fill='%23efe6da'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&family=Inter:wght@400;500;600&family=Anton&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #0a0709;
@@ -96,37 +96,14 @@ footer p + p { margin-top: 6px; max-width: 46rem; }
 #status.err { color: #ff8a9b; }
 .hp { position: absolute; left: -9999px; }
 
-/* tarot swipe stack */
-.stack { position: relative; width: min(270px, 66vw); aspect-ratio: 2 / 3; margin-inline: auto; }
-.card {
-  position: absolute; inset: 0; border-radius: 18px; padding: 14px;
-  background: linear-gradient(160deg, var(--surface-2), var(--surface));
-  border: 1px solid var(--line); box-shadow: 0 30px 60px -20px rgba(0,0,0,.9);
-}
-.card .frame {
-  height: 100%; border: 1px solid rgba(232,96,122,.45); border-radius: 10px;
-  display: flex; flex-direction: column; align-items: center; justify-content: space-between;
-  padding: 16px 10px; text-align: center; position: relative; overflow: hidden;
-  background: radial-gradient(circle at 50% 38%, rgba(107,79,163,.35), transparent 62%);
-}
-.card svg { width: 62%; aspect-ratio: 1; color: var(--text); }
-.card .num, .card .name { font-family: var(--display); letter-spacing: .25em; text-transform: uppercase; font-size: .85rem; color: var(--blood-hi); }
-.card .name { color: var(--text); font-size: 1.35rem; letter-spacing: .12em; }
-.c3 { transform: rotate(-9deg) translateX(-18px); opacity: .55; }
-.c2 { transform: rotate(7deg) translateX(16px); opacity: .8; }
-.c1 { animation: swipe 7s ease-in-out infinite; }
+/* hero art: a 3D animated fictional character */
+.hero-art { position: relative; margin: 0 auto; width: min(340px, 80vw); aspect-ratio: 4 / 5; overflow: hidden; border-radius: 22px; border: 1px solid var(--line); transform: rotate(2deg); box-shadow: 0 30px 60px -20px rgba(0,0,0,.9), 0 0 60px -10px rgba(179,18,47,.45); }
+.hero-art img, .meme.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .stamp {
   position: absolute; top: 18px; left: 14px; z-index: 2; opacity: 0; transform: rotate(-14deg);
   font: 700 1.6rem var(--display); letter-spacing: .15em; color: #7fd6a4;
-  border: 3px solid #7fd6a4; border-radius: 8px; padding: 2px 10px;
+  border: 3px solid #7fd6a4; border-radius: 8px; padding: 2px 10px; background: rgba(10,7,9,.45);
   animation: stamp 7s ease-in-out infinite;
-}
-@keyframes swipe {
-  0%, 30% { transform: translateY(0) rotate(0); opacity: 1; }
-  45% { transform: translateX(26px) rotate(6deg); opacity: 1; }
-  68% { transform: translateX(150%) rotate(24deg); opacity: 0; }
-  69%, 84% { transform: translateY(24px) scale(.94); opacity: 0; }
-  100% { transform: translateY(0) rotate(0); opacity: 1; }
 }
 @keyframes stamp {
   0%, 38% { opacity: 0; }
@@ -155,9 +132,45 @@ details p { color: var(--muted); margin-top: 8px; }
 .final p.lead { margin: 0 auto 28px; }
 footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--muted); font-size: .85rem; }
 
+/* meme formats: original art, no templates, no real faces */
+.meme-grid { display: grid; gap: 20px; margin-top: 40px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.meme { position: relative; margin: 0; aspect-ratio: 1; display: grid; overflow: hidden; background: #07040a; border: 1px solid var(--line); border-radius: 16px; }
+.meme .art, .meme .panel { display: grid; place-items: center; background: radial-gradient(circle at 50% 45%, hsl(var(--hue, 285) 50% 30%), #07040a 72%); }
+.meme .art { position: absolute; inset: 0; }
+.meme .panel { position: relative; overflow: hidden; }
+.meme .panel .art { position: absolute; }
+.meme .sigil { width: 46%; aspect-ratio: 1; color: hsl(var(--hue, 285) 30% 92%); }
+.meme .sigil.big { width: 72%; }
+.meme.photo { background: #240d2f; }
+.meme.split { grid-template-rows: 1fr 1fr; }
+.meme.split .panel + .panel { border-top: 2px solid #000; }
+.meme.split .sigil { width: auto; height: 62%; }
+.meme.split .sigil.big { width: auto; height: 88%; }
+.cap {
+  position: absolute; left: 10px; right: 10px; z-index: 1; text-align: center; text-transform: uppercase; color: #fff;
+  font: 400 clamp(1.25rem, 5vw, 1.75rem)/1.05 Anton, Impact, "Arial Narrow", sans-serif;
+  -webkit-text-stroke: 6px #000; paint-order: stroke fill;
+}
+.cap.top { top: 12px; }
+.cap.bottom { bottom: 12px; }
+.meme.chat { align-content: end; padding: 64px 14px 14px; background: linear-gradient(#0e0a10, #07040a); }
+.bubbles { display: grid; gap: 8px; }
+.b { margin: 0; width: fit-content; max-width: 82%; padding: 8px 14px; border-radius: 16px; background: var(--surface-2); border: 1px solid var(--line); }
+.sys { margin: 6px 0 0; text-align: center; font-size: .8rem; color: var(--muted); }
+.posts { display: grid; gap: 12px; max-width: 34rem; margin: 28px 0 16px; }
+.post { display: flex; gap: 12px; padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
+.post.reply { margin-left: 28px; border-left: 3px solid var(--blood); }
+.pic { flex: none; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: var(--text); background: radial-gradient(circle, #3b2a52, #120b10); }
+.pic svg { width: 60%; aspect-ratio: 1; }
+.who { font-size: .9rem; color: var(--muted); }
+.who strong { color: var(--text); }
+.post .text { font-size: 1.2rem; margin: 4px 0; }
+.stats { font-size: .8rem; color: var(--muted); }
+.friend { display: block; width: min(220px, 60vw); height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; margin: 0 auto 20px; border: 2px solid var(--blood-hi); box-shadow: 0 0 40px -8px rgba(179,18,47,.6); }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .c1, .stamp { animation: none; }
+  .stamp { animation: none; opacity: 1; }
   .btn { transition: none; }
 }
 </style>
@@ -218,11 +231,11 @@ footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--mu
         </form>
       </div>
 
-      <div class="stack" aria-hidden="true">
-        <div class="card c3"><div class="frame"><span class="num">XIX</span><svg><use href="#star"/></svg><span class="name">The Star</span></div></div>
-        <div class="card c2"><div class="frame"><span class="num">XVIII</span><svg><use href="#eye"/></svg><span class="name">The Eye</span></div></div>
-        <div class="card c1"><span class="stamp">HEX</span><div class="frame"><span class="num">XIII</span><svg><use href="#moon"/></svg><span class="name">The Moth</span></div></div>
-      </div>
+      <figure class="hero-art">
+        <img src="img/swipe.jpg" width="720" height="900" alt="A 3D animated goth woman in a black lace gown swipes on her phone with a knowing smirk. A fictional character, not a member.">
+        <span class="stamp" aria-hidden="true">HEX</span>
+        <span class="cap bottom">She's reading your bio</span>
+      </figure>
     </div>
   </section>
 
@@ -234,6 +247,35 @@ footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--mu
         <li>Your match asks if it's "just a phase." It has been a decade.</li>
         <li>The old goth sites look like 2007 forums. The newer apps ask you to pay before you see anyone.</li>
       </ul>
+      <div class="meme-grid">
+        <figure class="meme photo" role="img" aria-label="Meme. A 3D animated goth woman gives her phone a deadpan side-eye. Caption: match number 4 says hey. Unmatched.">
+          <img src="img/sideeye.jpg" alt="" loading="lazy" width="720" height="720">
+          <span class="cap top">Match #4 says "hey"</span><span class="cap bottom">Unmatched</span>
+        </figure>
+        <figure class="meme split" role="img" aria-label="Two-panel meme. Top panel, 2014: someone says goth is just a phase. Bottom panel, 2026: still goth, with a much bigger moon.">
+          <div class="panel" style="--hue:285"><div class="art"><svg class="sigil" aria-hidden="true"><use href="#moon"/></svg></div><span class="cap top">"It's just a phase" (2014)</span></div>
+          <div class="panel" style="--hue:345"><div class="art"><svg class="sigil big" aria-hidden="true"><use href="#moon"/></svg></div><span class="cap bottom">Still here (2026)</span></div>
+        </figure>
+        <figure class="meme photo" role="img" aria-label="Meme. A 3D animated goth woman weighs two tarot cards, one with a moon and one with a bat. Caption: Wednesday or Nosferatu? Choose carefully.">
+          <img src="img/cards.jpg" alt="" loading="lazy" width="720" height="720">
+          <span class="cap top">Wednesday or Nosferatu?</span><span class="cap bottom">Choose carefully</span>
+        </figure>
+        <figure class="meme chat" role="img" aria-label="Meme. A chat full of matches who all say hey, then one asks if goth is just a phase, then a note: you unmatched 4 people.">
+          <span class="cap top">The "hey" brigade</span>
+          <div class="bubbles" aria-hidden="true">
+            <p class="b">hey</p><p class="b">hey</p><p class="b">heyyy</p><p class="b">is goth just a phase</p>
+            <p class="sys">You unmatched 4 people</p>
+          </div>
+        </figure>
+        <figure class="meme photo" role="img" aria-label="Meme. A 3D animated goth woman reaches toward the camera with an approving smile. Caption: be normal about it. Good boy.">
+          <img src="img/pat.jpg" alt="" loading="lazy" width="720" height="720">
+          <span class="cap top">Be normal about it</span><span class="cap bottom">Good boy</span>
+        </figure>
+        <figure class="meme photo" role="img" aria-label="Meme. A 3D animated goth woman blows a kiss and a glowing heart-shaped bat flies off. Caption: mutual hex. Sends kisses.">
+          <img src="img/kiss.jpg" alt="" loading="lazy" width="720" height="720">
+          <span class="cap top">Mutual hex</span><span class="cap bottom">*sends kisses*</span>
+        </figure>
+      </div>
     </div>
   </section>
 
@@ -246,6 +288,28 @@ footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--mu
         <div class="step"><span class="n">II</span><h3>Swipe</h3><p>Right to hex, left to let go. Both hex, it's a match. Both let go, it's Tuesday.</p></div>
         <div class="step"><span class="n">III</span><h3>Talk</h3><p>Nobody messages you unless you hexed them first. The "hey" brigade stays outside.</p></div>
       </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">Ancient history</span>
+      <h2>It started with <em>a post.</em></h2>
+      <div class="posts" role="img" aria-label="Two parody posts. A fictional user posts: I need a goth gf. Hexed replies: Please be normal about it. We built you a place.">
+        <article class="post" aria-hidden="true">
+          <div class="pic"><svg><use href="#moon"/></svg></div>
+          <div><p class="who"><strong>Definitely Normal Guy</strong> @dng_2014 · Apr 2014</p>
+            <p class="text">I need a goth gf</p>
+            <p class="stats">1 like (my mom) · 0 reposts · 1 wish</p></div>
+        </article>
+        <article class="post reply" aria-hidden="true">
+          <div class="pic"><svg><use href="#star"/></svg></div>
+          <div><p class="who"><strong>Hexed</strong> @hexed · now</p>
+            <p class="text">Please be normal about it. We built you a place.</p>
+            <p class="stats">Verified: no · Block button: yes</p></div>
+        </article>
+      </div>
+      <p class="fine">Fictional posts. The meme is real and has been around since 2014.</p>
     </div>
   </section>
 
@@ -274,6 +338,7 @@ footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--mu
 
   <section class="final">
     <div class="wrap">
+      <img class="friend" src="img/friend.jpg" width="720" height="720" loading="lazy" alt="A 3D animated whimsigoth woman with lavender-tinted hair waves hello. A fictional character, not a member.">
       <h2>Your people are <em>awake.</em></h2>
       <p class="lead">Be one of the first inside.</p>
       <a class="btn" href="#join">Get early access</a>
